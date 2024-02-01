@@ -323,6 +323,7 @@ class FuseUtils {
       return _.merge({}, _item);
     });
   }
+  
 
   static hasPermission(authArr, userRole) {
     /**
