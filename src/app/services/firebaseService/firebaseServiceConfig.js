@@ -1,22 +1,22 @@
 const prodConfig = {
-  apiKey: 'AIzaSyDZY5kH8rKQsgkPalQ5NiFWwqWiyACEwsM',
-  authDomain: 'fleetcargo-2e197.firebaseapp.com',
-  databaseURL: 'https://fleetcargo-2e197-default-rtdb.firebaseio.com',
-  projectId: 'fleetcargo-2e197',
-  storageBucket: 'fleetcargo-2e197.appspot.com',
-  messagingSenderId: '755549828580',
-  appId: '1:755549828580:web:64841aad0f46a1630483f1',
-  measurementId: 'G-LV55GF29PS'
+  apiKey: "AIzaSyDzCY3ib1dmqs5GdCr0BLphYn3_Uas9oEE",
+  authDomain: "cargo-fleet-542c2.firebaseapp.com",
+  databaseURL: "https://cargo-fleet-542c2-default-rtdb.firebaseio.com",
+  projectId: "cargo-fleet-542c2",
+  storageBucket: "cargo-fleet-542c2.appspot.com",
+  messagingSenderId: "1092641946874",
+  appId: "1:1092641946874:web:6ac3c7828ee58f73751d43",
+  measurementId: "G-W7582CGKDL"
 };
 const devConfig = {
-  apiKey: 'AIzaSyDZY5kH8rKQsgkPalQ5NiFWwqWiyACEwsM',
-  authDomain: 'fleetcargo-2e197.firebaseapp.com',
-  databaseURL: 'https://fleetcargo-2e197-default-rtdb.firebaseio.com',
-  projectId: 'fleetcargo-2e197',
-  storageBucket: 'fleetcargo-2e197.appspot.com',
-  messagingSenderId: '755549828580',
-  appId: '1:755549828580:web:64841aad0f46a1630483f1',
-  measurementId: 'G-LV55GF29PS'
+  apiKey: "AIzaSyDzCY3ib1dmqs5GdCr0BLphYn3_Uas9oEE",
+  authDomain: "cargo-fleet-542c2.firebaseapp.com",
+  databaseURL: "https://cargo-fleet-542c2-default-rtdb.firebaseio.com",
+  projectId: "cargo-fleet-542c2",
+  storageBucket: "cargo-fleet-542c2.appspot.com",
+  messagingSenderId: "1092641946874",
+  appId: "1:1092641946874:web:6ac3c7828ee58f73751d43",
+  measurementId: "G-W7582CGKDL"
 };
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
