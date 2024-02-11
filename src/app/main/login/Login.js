@@ -56,15 +56,10 @@ function Login() {
           <CardContent className="flex flex-col items-center justify-center w-full max-w-320">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
               <div className="flex items-center mb-48">
-                <img className="logo-icon w-48" src="assets/images/logos/fuse.svg" alt="logo" />
-                <div className="border-l-1 mr-4 w-1 h-40" />
+                <img className="logo-icon w-70" src="assets/images/logos/cargoFleetLogo.png" alt="logo" />
+               
                 <div>
-                  <Typography className="text-24 font-semibold logo-text" color="inherit">
-                    FUSE
-                  </Typography>
-                  <Typography className="text-16 tracking-widest -mt-8 font-700" color="textSecondary">
-                    REACT
-                  </Typography>
+                 
                 </div>
               </div>
             </motion.div>
@@ -76,7 +71,7 @@ function Login() {
                 label="JWT"
               />
               <Tab
-                icon={<img className="h-40" src="assets/images/logos/firebase.svg" alt="firebase" />}
+            
                 className="min-w-0"
                 label="Firebase"
               />
