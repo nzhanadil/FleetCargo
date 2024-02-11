@@ -57,11 +57,7 @@ function Login() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
               <div className="flex items-center mb-48">
                 <img className="logo-icon w-70" src="assets/images/logos/cargoFleetLogo.png" alt="logo" />
-               
-                <div>
-                 
                 </div>
-              </div>
             </motion.div>
 
             <Tabs value={selectedTab} onChange={handleTabChange} variant="fullWidth" className="w-full mb-32">
@@ -71,7 +67,6 @@ function Login() {
                 label="JWT"
               />
               <Tab
-            
                 className="min-w-0"
                 label="Firebase"
               />
