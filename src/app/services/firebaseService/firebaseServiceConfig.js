@@ -1,20 +1,22 @@
 const prodConfig = {
-  apiKey: 'AIzaSyAo9XhYAvVgtVynXridFdsg4Qtb0DvgTo0',
-  authDomain: 'emplosoft-2db9f.firebaseapp.com',
-  projectId: 'emplosoft-2db9f',
-  databaseURL: 'https://emplosoft-2db9f-default-rtdb.firebaseio.com',
-  storageBucket: 'emplosoft-2db9f.appspot.com',
-  messagingSenderId: '460039525265',
-  appId: '1:460039525265:web:aec32080d87de88acf0030'
+  apiKey: "AIzaSyDzCY3ib1dmqs5GdCr0BLphYn3_Uas9oEE",
+  authDomain: "cargo-fleet-542c2.firebaseapp.com",
+  databaseURL: "https://cargo-fleet-542c2-default-rtdb.firebaseio.com",
+  projectId: "cargo-fleet-542c2",
+  storageBucket: "cargo-fleet-542c2.appspot.com",
+  messagingSenderId: "1092641946874",
+  appId: "1:1092641946874:web:6ac3c7828ee58f73751d43",
+  measurementId: "G-W7582CGKDL"
 };
 const devConfig = {
-  apiKey: 'AIzaSyAo9XhYAvVgtVynXridFdsg4Qtb0DvgTo0',
-  authDomain: 'emplosoft-2db9f.firebaseapp.com',
-  projectId: 'emplosoft-2db9f',
-  databaseURL: 'https://emplosoft-2db9f-default-rtdb.firebaseio.com',
-  storageBucket: 'emplosoft-2db9f.appspot.com',
-  messagingSenderId: '460039525265',
-  appId: '1:460039525265:web:aec32080d87de88acf0030'
+  apiKey: "AIzaSyDzCY3ib1dmqs5GdCr0BLphYn3_Uas9oEE",
+  authDomain: "cargo-fleet-542c2.firebaseapp.com",
+  databaseURL: "https://cargo-fleet-542c2-default-rtdb.firebaseio.com",
+  projectId: "cargo-fleet-542c2",
+  storageBucket: "cargo-fleet-542c2.appspot.com",
+  messagingSenderId: "1092641946874",
+  appId: "1:1092641946874:web:6ac3c7828ee58f73751d43",
+  measurementId: "G-W7582CGKDL"
 };
 
 const config = process.env.NODE_ENV === 'production' ? prodConfig : devConfig;
