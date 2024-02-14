@@ -47,12 +47,13 @@ function Login() {
               </div>
             </motion.div>
             {/* <Tabs value={selectedTab} onChange={handleTabChange} variant="fullWidth" className="w-full mb-100"> */}
+            <Tabs value={selectedTab} onChange={handleTabChange} variant="fullWidth" className="w-full mb-32">
               <Tab
                 icon={<img className="h-48" src="assets/images/logos/firebase.svg" alt="firebase" />}
                 className="min-w-0"
                 label="Firebase"
               />
-            {/* </Tabs> */}
+            </Tabs>
             {selectedTab === 0 && <FirebaseLoginTab />}
           </CardContent>
           <div className="flex flex-col items-center justify-center pt-4 pb-8"> {/* Adjust padding top and bottom */}
