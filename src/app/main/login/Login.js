@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import FirebaseLoginTab from './tabs/FirebaseLoginTab';
+
+
 const useStyles = makeStyles(theme => ({
   root: {
     background: `linear-gradient(to right, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.light} 100%)`,
@@ -42,16 +44,18 @@ function Login() {
                   <Typography className="text-16 tracking-widest -mt-8 font-500" color="textSecondary"> {/* Adjust text size */}
                     Cargo
                   </Typography>
+              <div className="flex items-center mb-48">
+                <img className="logo-icon w-70" src="assets/images/logos/cargoFleetLogo.png" alt="logo" />
                 </div>
-              </div>
             </motion.div>
             {/* <Tabs value={selectedTab} onChange={handleTabChange} variant="fullWidth" className="w-full mb-100"> */}
+            <Tabs value={selectedTab} onChange={handleTabChange} variant="fullWidth" className="w-full mb-32">
               <Tab
                 icon={<img className="h-48" src="assets/images/logos/firebase.svg" alt="firebase" />}
                 className="min-w-0"
                 label="Firebase"
               />
-            {/* </Tabs> */}
+            </Tabs>
             {selectedTab === 0 && <FirebaseLoginTab />}
           </CardContent>
           <div className="flex flex-col items-center justify-center pt-4 pb-8"> {/* Adjust padding top and bottom */}
