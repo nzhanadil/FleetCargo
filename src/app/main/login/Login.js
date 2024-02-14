@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import FirebaseLoginTab from './tabs/FirebaseLoginTab';
+
 const useStyles = makeStyles(theme => ({
   root: {
     background: `linear-gradient(to right, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.light} 100%)`,
