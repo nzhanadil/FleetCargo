@@ -13,7 +13,7 @@ export const getVehicleDetails = createAsyncThunk(
   }
 );
 
-const initialState = { data: {}, error: null };
+const initialState = { data: {}, isFetching: false, error: null };
 
 export const vehicleDetailsSlice = createSlice({
   name: 'detail',
@@ -22,11 +22,18 @@ export const vehicleDetailsSlice = createSlice({
   extraReducers: {
     [getVehicleDetails.fulfilled]: (state, action) => {
       state.data = action.payload;
+      state.isFetching = false;
+      state.error = null;
+    },
+    [getVehicleDetails.pending]: (state, action) => {
+      state.data = null;
+      state.isFetching = true;
       state.error = null;
     },
     [getVehicleDetails.rejected]: (state, action) => {
       state.data = null;
-      state.error = 'Failed to load';
+      state.isFetching = false;
+      state.error = 'Failed to load details of vehicle';
     }
   }
 });
