@@ -10,6 +10,7 @@ import VehiclesList from './VehiclesList';
 // import VehiclesSidebarContent from './VehiclesSidebarContent';
 import reducer from './store';
 import { getVehicles } from './store/vehiclesSlice';
+import Details from './details/Details';
 // import { getUserData } from './store/userSlice';
 
 function VehiclesApp(props) {
@@ -34,7 +35,7 @@ function VehiclesApp(props) {
           wrapper: 'min-h-0'
         }}
         header={<VehiclesHeader pageLayout={pageLayout} />}
-        content={<VehiclesList />}
+        content={routeParams.vehicleId ? <Details /> : <VehiclesList />}
         // leftSidebarContent={<VehiclesSidebarContent />}
         sidebarInner
         ref={pageLayout}

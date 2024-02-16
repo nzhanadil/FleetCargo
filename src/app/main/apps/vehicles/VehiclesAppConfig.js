@@ -9,6 +9,10 @@ const VehiclesAppConfig = {
   },
   routes: [
     {
+      path: '/apps/vehicles/details/:vehicleId',
+      component: lazy(() => import('./VehiclesApp'))
+    },
+    {
       path: '/apps/vehicles/:id',
       component: lazy(() => import('./VehiclesApp'))
     },
