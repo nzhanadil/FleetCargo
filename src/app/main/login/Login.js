@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, Tabs, Tab, Typography } from '@material-ui/core';
+import { Card, CardContent, Tabs, Tab, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -44,6 +44,15 @@ function Login() {
               </div>
             </motion.div>
             <FirebaseLoginTab />
+            <Link className="font-normal" to="/reset-password">
+              <Button
+                variant="outlined"
+                color="primary"
+                className="w-full mx-auto mt-16"
+              >
+                Reset Password
+              </Button>
+            </Link>
           </CardContent>
           <div className="flex flex-col items-center justify-center pt-4 pb-8"> {/* Adjust padding top and bottom */}
             <div className='mb-4'> {/* Reduce margin bottom */}
