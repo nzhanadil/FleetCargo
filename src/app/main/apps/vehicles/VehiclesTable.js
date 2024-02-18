@@ -50,28 +50,30 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
     hooks => {
       hooks.allColumns.push(_columns => [
         // Let's make a column for selection
-        {
-          id: 'selection',
-          sortable: false,
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox.  Pagination is a problem since this will select all
-          // rows even though not all rows are on the current page.  The solution should
-          // be server side pagination.  For one, the clients should not download all
-          // rows in most cases.  The client should only download data for the current page.
-          // In that case, getToggleAllRowsSelectedProps works fine.
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} onClick={ev => ev.stopPropagation()} />
-            </div>
-          )
-        },
+        // {
+        //   Header: 'Active',
+        //   id: 'selection',
+        //   sortable: false,
+        //   // The header can use the table's getToggleAllRowsSelectedProps method
+        //   // to render a checkbox.  Pagination is a problem since this will select all
+        //   // rows even though not all rows are on the current page.  The solution should
+        //   // be server side pagination.  For one, the clients should not download all
+        //   // rows in most cases.  The client should only download data for the current page.
+        //   // In that case, getToggleAllRowsSelectedProps works fine.
+        //   // Header: ({ getToggleAllRowsSelectedProps }) => (
+        //     // <div>
+        //     //   Active
+        //     // </div>
+        //   // ),
+        //   // The cell can use the individual row's getToggleRowSelectedProps method
+        //   // to the render a checkbox
+        //   Cell: ({ row }) => (
+
+        //     <div>
+        //       <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} onClick={ev => ev.stopPropagation()} />
+        //     </div>
+        //   )
+        // },
         ..._columns
       ]);
     }
@@ -87,8 +89,9 @@ const EnhancedTable = ({ columns, data, onRowClick }) => {
 
   // Render the UI for your table
   return (
+
     <div className="flex flex-col min-h-full sm:border-1 sm:rounded-16 overflow-hidden">
-      <TableContainer className="flex flex-1">
+     <TableContainer className="flex flex-1">
         <Table {...getTableProps()} stickyHeader className="simple borderless">
           <TableHead>
             {headerGroups.map(headerGroup => (

@@ -1,52 +1,33 @@
 import { motion } from 'framer-motion';
 import FuseUtils from '@fuse/utils';
 import Typography from '@material-ui/core/Typography';
+import { parseISO, format } from 'date-fns';
+import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
+import Divider from '@mui/material/Divider';
+import Checkbox from '@material-ui/core/Checkbox';
+import { Link } from '@material-ui/core';
+
 import { useMemo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import VehiclesTable from './VehiclesTable';
-// import { openEditContactDialog, selectVehicles } from './store/vehiclesSlice';
-import { selectVehicles } from './store/vehiclesSlice';
 
-const formatData = vehicles =>
-  vehicles.map(vehicle => {
-    const totalCost = `$${(vehicle.serviceCost + vehicle.fuelCost).toLocaleString()}`;
-    return {
-      ...vehicle,
-      isAssigned: vehicle.isAssigned ? 'YES' : 'NO',
-      totalCost,
-      millage: vehicle.millage.toLocaleString()
-    };
-  });
+import VehiclesTable from './VehiclesTable';
+import { selectVehicles } from './store/vehiclesSlice';
 
 function VehiclesList(props) {
   const dispatch = useDispatch();
   const vehicles = useSelector(selectVehicles);
   const searchText = useSelector(({ vehiclesApp }) => vehiclesApp.vehicles.searchText);
-  // const user = useSelector(({ vehiclesApp }) => vehiclesApp.user);
-
   const [filteredData, setFilteredData] = useState(null);
-
   const columns = useMemo(
     () => [
-      // {
-      //   Header: ({ selectedFlatRows }) => {
-      //     const selectedRowIds = selectedFlatRows.map(row => row.original.id);
-
-      //     return selectedFlatRows.length > 0 && <VehiclesMultiSelectMenu selectedContactIds={selectedRowIds} />;
-      //   },
-      //   accessor: 'avatar',
-      //   Cell: ({ row }) => {
-      //     return <Avatar className="mx-8" alt={row.original.name} src={row.original.avatar} />;
-      //   },
-      //   className: 'justify-center',
-      //   width: 64,
-      //   sortable: false
-      // },
-      {
-        Header: 'Brand',
-        accessor: 'brand',
+     {
+        Header: 'Active',
+        accessor: 'active',
         className: 'font-medium',
-        sortable: true
+        Cell: ({ row }) => {
+          return row.values.active ? <Checkbox checked /> : <Checkbox />;
+        }
       },
       {
         Header: 'Model',
@@ -54,67 +35,60 @@ function VehiclesList(props) {
         className: 'font-medium',
         sortable: true
       },
-      // TODO: add Production Year
-      // {
-      //   Header: 'Production Year',
-      //   accessor: 'year',
-      //   sortable: true
-      // },
       {
         Header: 'Plate Number',
-        accessor: 'plateNumber',
+        accessor: 'plate_number',
+        sortable: true,
+        Cell: ({ row }) => (
+          <a href={`/apps/vehicles/details/${row.original.id}`} style={{ color: 'blue', textDecoration: 'underline' }}>
+            {row.values.plate_number}
+          </a>
+        )
+      },
+      {
+        Header: 'Engine number',
+        accessor: 'engine_number',
         sortable: true
       },
       {
-        Header: 'Assigned Status',
-        accessor: 'isAssigned',
-        sortable: true
+        Header: 'Year',
+        accessor: 'manufacture_year',
+        sortable: true,
+        Cell: ({ row }) => <p>{format(parseISO(row.values.manufacture_year), 'yyyy')}</p>
       },
       {
-        Header: 'Vehicle Status',
+        Header: 'Issues',
         accessor: 'vehicleStatus',
-        sortable: true
+        sortable: true,
+        Cell: ({ row }) => <p>{row.original.issues.length}</p>
       },
       {
-        Header: 'Total Cost',
-        accessor: 'totalCost',
-        sortable: true
-      },
-      {
-        Header: 'Millage',
-        accessor: 'millage',
-        sortable: true
+        Header: 'Actions',
+        id: 'action',
+        width: 128,
+        sortable: false,
+        Cell: ({ row }) => (
+          <div className="flex items-center">
+            <IconButton
+              onClick={ev => {
+                ev.stopPropagation();
+                // handle Edit logic in this function
+              }}
+            >
+              Edit
+            </IconButton>
+            <Divider orientation="vertical" flexItem />
+            <IconButton
+              onClick={ev => {
+                ev.stopPropagation();
+                // handle delete logic in this function
+              }}
+            >
+              <Icon>delete</Icon>
+            </IconButton>
+          </div>
+        )
       }
-
-      // {
-      //   id: 'action',
-      //   width: 128,
-      //   sortable: false,
-      //   Cell: ({ row }) => (
-      //     <div className="flex items-center">
-      //       <IconButton
-      //         onClick={ev => {
-      //           ev.stopPropagation();
-      //           dispatch(toggleStarredContact(row.original.id));
-      //         }}
-      //       >
-      //         {user.starred && user.starred.includes(row.original.id) ? (
-      //           <Icon className="text-yellow-700">star</Icon>
-      //         ) : (
-      //           <Icon>star_border</Icon>
-      //         )}
-      //       </IconButton>
-      //       {/* <IconButton
-      //         onClick={ev => {
-      //           ev.stopPropagation();
-      //           dispatch(removeContact(row.original.id));
-      //         }}
-      //       >
-      //         <Icon>delete</Icon>
-      //       </IconButton> */}
-      //     </div>
-      //   )
-      // }
     ],
     // eslint-disable-next-line
     [dispatch, vehicles]
@@ -147,13 +121,11 @@ function VehiclesList(props) {
     );
   }
 
-  const formattedData = formatData(filteredData);
-
   return (
     <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
       <VehiclesTable
         columns={columns}
-        data={formattedData}
+        data={vehicles}
         // onRowClick={(ev, row) => {
         //   if (row) {
         //     dispatch(openEditContactDialog(row.original));
