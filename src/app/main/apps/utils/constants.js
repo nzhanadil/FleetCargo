@@ -1,0 +1,1 @@
+export const VEHICLES_BASE_URL = 'https://cargofleet-api.fly.dev/team2/api/vehicles'
