@@ -3,16 +3,31 @@ import axios from 'axios';
 import { getUserData } from './userSlice';
 
 export const getVehicles = createAsyncThunk(
-  'vehicle-list-app/vehicles/getVehicles',
-  async (routeParams, { getState }) => {
-    routeParams = routeParams || getState().vehiclesApp.vehicles.routeParams;
-    const response = await axios.get('/api/vehicle-list-app/vehicles', {
-      params: routeParams
-    });
-    const data = await response.data;
+  
+  // async (routeParams, { getState }) => {
+  //   routeParams = routeParams || getState().vehiclesApp.vehicles.routeParams;
+  //   const response = await axios.get('/api/vehicle-list-app/vehicles', {
+  //     params: routeParams
+  //   });
+  //   const data = await response.data;
 
-    return { data, routeParams };
+  //   return { data, routeParams };
+  // }
+  'vehicle-list-app/vehicles/getVehicles',
+  async (_, {getState}) => {
+      let response = await axios.get('https://cargofleet-api.fly.dev/team2/api/vehicles', {
+        headers:{
+          Authorization: 'Zb84MzAROCrhmF6t'
+        }
+      } )
+  
+      console.log('is working? ---- >', response.data.data);
+      return  response.data.data;
   }
+
+
+
+
 );
 
 // export const addVehicle = createAsyncThunk(
@@ -182,10 +197,10 @@ const vehiclesSlice = createSlice({
     // [removeVehicles.fulfilled]: (state, action) => vehiclesAdapter.removeMany(state, action.payload),
     // [removeVehicle.fulfilled]: (state, action) => vehiclesAdapter.removeOne(state, action.payload),
     [getVehicles.fulfilled]: (state, action) => {
-      const { data, routeParams } = action.payload;
+      const  data = action.payload;
       vehiclesAdapter.setAll(state, data);
-      state.routeParams = routeParams;
-      state.searchText = '';
+      // state.routeParams = routeParams;
+      // state.searchText = '';
     }
   }
 });

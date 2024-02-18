@@ -7,16 +7,16 @@ import VehiclesTable from './VehiclesTable';
 // import { openEditContactDialog, selectVehicles } from './store/vehiclesSlice';
 import { selectVehicles } from './store/vehiclesSlice';
 
-const formatData = vehicles =>
-  vehicles.map(vehicle => {
-    const totalCost = `$${(vehicle.serviceCost + vehicle.fuelCost).toLocaleString()}`;
-    return {
-      ...vehicle,
-      isAssigned: vehicle.isAssigned ? 'YES' : 'NO',
-      totalCost,
-      millage: vehicle.millage.toLocaleString()
-    };
-  });
+// const formatData = vehicles =>
+//   vehicles.map(vehicle => {
+//     const totalCost = `$${(vehicle.serviceCost + vehicle.fuelCost).toLocaleString()}`;
+//     return {
+//       ...vehicle,
+//       isAssigned: vehicle.isAssigned ? 'YES' : 'NO',
+//       totalCost,
+  
+//     };
+//   });
 
 function VehiclesList(props) {
   const dispatch = useDispatch();
@@ -55,14 +55,14 @@ function VehiclesList(props) {
         sortable: true
       },
       // TODO: add Production Year
-      // {
-      //   Header: 'Production Year',
-      //   accessor: 'year',
-      //   sortable: true
-      // },
+      {
+        Header: 'Production Year',
+        accessor: 'manufacture_year',
+        sortable: true
+      },
       {
         Header: 'Plate Number',
-        accessor: 'plateNumber',
+        accessor: 'plate_number',
         sortable: true
       },
       {
@@ -147,13 +147,13 @@ function VehiclesList(props) {
     );
   }
 
-  const formattedData = formatData(filteredData);
+  // const formattedData = formatData(filteredData);
 
   return (
     <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
       <VehiclesTable
         columns={columns}
-        data={formattedData}
+        data={vehicles}
         // onRowClick={(ev, row) => {
         //   if (row) {
         //     dispatch(openEditContactDialog(row.original));
