@@ -21,7 +21,7 @@ function VehiclesList(props) {
   const [filteredData, setFilteredData] = useState(null);
   const columns = useMemo(
     () => [
-     {
+      {
         Header: 'Active',
         accessor: 'active',
         className: 'font-medium',
