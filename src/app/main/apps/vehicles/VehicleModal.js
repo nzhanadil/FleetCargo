@@ -18,13 +18,8 @@ const dataStructure = {
   "image_url": ""
 }
 
-export default function VehicleModal({add, edit, data}) {
-
-    const [modal, setModal] = useState(false);
+export default function VehicleModal({data, modal, toggleModal, modalAction}) {
     const [message, setMessage] = useState('');
-
-    const toggleModal = () => setModal(!modal)
-
     const [vehicleData, setVehicleData] = useState(data ? data : dataStructure)
 
     const handleChange = (e) => {
@@ -33,20 +28,19 @@ export default function VehicleModal({add, edit, data}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(vehicleData)
+
         axios.post(VEHICLES_BASE_URL, vehicleData, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Zb84MzAROCrhmF6t'
+                'Authorization': TOKEN
             }  
         }).then(res => {
-            setMessage('ok')
+            setMessage('Vehicle added successfully!')
             setTimeout(()=> {
               setMessage('')
             }, 2000)
         }).catch(error => {
-          console.log(error)
-            setMessage('err')
+            setMessage('Something went wrong, please try again!')
             setTimeout(()=> {
               setMessage('')
             }, 2000)
@@ -56,11 +50,11 @@ export default function VehicleModal({add, edit, data}) {
     } 
   return (
     <div>
-      <AlertMessage add message={message}/>
-      <Button className="min-h-40 min-w-40 px-0 md:px-16 py-0 md:py-6" onClick={toggleModal}>{add ? 'Add New' : 'Edit'}</Button>
+      {message && <AlertMessage message={message}/>}
+      
       <Modal open={modal} onClose={toggleModal}>
-        <form className='p-20 w-400 flex flex-col gap-10 bg-white rounded-xl absolute shadow-5 m-auto top-1/4 left-0 right-0 z-10' onSubmit={e => handleSubmit(e)}>
-            <h1>{add ? 'Add' : 'Edit'} Vehicle</h1>
+        <form className='p-20 w-400 flex flex-col gap-10 bg-white rounded-xl absolute shadow-5 m-auto top-160 left-0 right-0 z-10' onSubmit={e => handleSubmit(e)}>
+            <h1>{modalAction} Vehicle</h1>
             <TextField value={vehicleData.model} id="model" label="Model" variant="outlined" required placeholder='Model' onChange={e => handleChange(e)}/>
             <TextField value={vehicleData.plate_number} id="plate_number" label="Plate Number" variant="outlined" required placeholder='Plate number' onChange={e => handleChange(e)}/>
             <TextField value={vehicleData.engine_number} id="engine_number" label="Engine Number" variant="outlined" required placeholder='Engine Number' onChange={e => handleChange(e)}/>

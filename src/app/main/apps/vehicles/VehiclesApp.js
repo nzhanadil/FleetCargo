@@ -1,6 +1,6 @@
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import withReducer from 'app/store/withReducer';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useDeepCompareEffect } from '@fuse/hooks';
@@ -10,6 +10,7 @@ import VehiclesList from './VehiclesList';
 // import VehiclesSidebarContent from './VehiclesSidebarContent';
 import reducer from './store';
 import { getVehicles } from './store/vehiclesSlice';
+import VehicleModal from './VehicleModal';
 // import { getUserData } from './store/userSlice';
 
 function VehiclesApp(props) {
@@ -17,6 +18,13 @@ function VehiclesApp(props) {
 
   const pageLayout = useRef(null);
   const routeParams = useParams();
+
+  const [modal, setModal] = useState(false);
+  const [modalAction, setModalAction] = useState(false);
+  const toggleModal = (action) => {
+    setModalAction(action)
+    setModal(!modal)
+  }
 
   useDeepCompareEffect(() => {
     dispatch(getVehicles(routeParams));
@@ -33,7 +41,7 @@ function VehiclesApp(props) {
           header: 'min-h-72 h-72 sm:h-136 sm:min-h-136',
           wrapper: 'min-h-0'
         }}
-        header={<VehiclesHeader pageLayout={pageLayout} />}
+        header={<VehiclesHeader pageLayout={pageLayout} toggleModal={toggleModal}/>}
         content={<VehiclesList />}
         // leftSidebarContent={<VehiclesSidebarContent />}
         sidebarInner
@@ -41,6 +49,7 @@ function VehiclesApp(props) {
         innerScroll
       />
       {/* <VehicleDialog /> */}
+      <VehicleModal modal={modal} toggleModal={toggleModal} modalAction={modalAction}/>
     </>
   );
 }
