@@ -9,9 +9,9 @@ export const getVehicleDetails = createAsyncThunk('detail/getVehicleDetails', as
   });
   return response.data;
 });
-// POST /api/api/vehicles/:vehicle_id/issues
+
 export const postIssue = createAsyncThunk('detail/postIssue', async issue => {
-  let response = await axios.post(
+  await axios.post(
     `${BASE_URL}/vehicles/${issue.vehicleId}/issues`,
     {
       vehicle_id: issue.vehicleId,
@@ -25,7 +25,6 @@ export const postIssue = createAsyncThunk('detail/postIssue', async issue => {
       }
     }
   );
-  console.log(response.data, ' ------ data here --------');
 });
 
 const initialState = { data: {}, isFetching: false, error: null };
