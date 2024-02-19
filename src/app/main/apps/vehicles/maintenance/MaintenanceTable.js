@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
 import { parseISO, format } from 'date-fns';
 
 const StyledTableCell = withStyles(theme => ({
@@ -15,22 +16,13 @@ const StyledTableCell = withStyles(theme => ({
     color: theme.palette.common.black
   },
   body: {
-    fontSize: 12
+    fontSize: 10
   }
 }))(TableCell);
 
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-}))(TableRow);
-
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
-    minHeight: 80
+    minWidth: 700
   }
 });
 
@@ -38,29 +30,35 @@ export default function MaintenanceTable({ tableDatas }) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} className="h-full">
-      <Table className={classes.table} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Description</StyledTableCell>
-            <StyledTableCell align="left">Priority</StyledTableCell>
-            <StyledTableCell align="left">Due date</StyledTableCell>
-            <StyledTableCell align="left">Completed</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {tableDatas?.map(row => (
-            <StyledTableRow key={row.created_at}>
-              <StyledTableCell component="th" scope="row">
-                {row.description}
-              </StyledTableCell>
-              <StyledTableCell align="left">{row.priority}</StyledTableCell>
-              <StyledTableCell align="left">{format(parseISO(row.due_date), 'MMM dd, yyyy')}</StyledTableCell>
-              <StyledTableCell align="left">{row.carbs}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
+    <TableContainer component={Paper}>
+      {tableDatas?.length ? (
+        <Table className={classes.table} stickyHeader aria-label="table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Description</StyledTableCell>
+              <StyledTableCell align="left">Priority</StyledTableCell>
+              <StyledTableCell align="left">Due date</StyledTableCell>
+              <StyledTableCell align="left">Completed</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {tableDatas?.map(row => (
+              <TableRow key={row.created_at}>
+                <StyledTableCell component="th" scope="row">
+                  {row.description}
+                </StyledTableCell>
+                <StyledTableCell align="left">{row.priority}</StyledTableCell>
+                <StyledTableCell align="left">{format(parseISO(row.due_date), 'MMM dd, yyyy')}</StyledTableCell>
+                <StyledTableCell align="center" padding="checkbox">
+                  <Checkbox checked={true} inputProps={{ 'aria-label': 'select all desserts' }} />
+                </StyledTableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <p className="w-full h-full p-20 text-2xl">{`There is no maintenance yet :)`}</p>
+      )}
     </TableContainer>
   );
 }

@@ -1,17 +1,32 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
-export const getVehicleDetails = createAsyncThunk(
-  'detail/getVehicleDetails',
-  async (vehicleId, { dispatch, getState }) => {
-    let response = await axios.get(`https://cargofleet-api.fly.dev/team2/api/vehicles/${vehicleId}`, {
+const BASE_URL = `https://cargofleet-api.fly.dev/team2/api`;
+export const getVehicleDetails = createAsyncThunk('detail/getVehicleDetails', async vehicleId => {
+  let response = await axios.get(`${BASE_URL}/vehicles/${vehicleId}`, {
+    headers: {
+      Authorization: process.env.REACT_APP_API_TOKEN
+    }
+  });
+  return response.data;
+});
+// POST /api/api/vehicles/:vehicle_id/issues
+export const postIssue = createAsyncThunk('detail/postIssue', async issue => {
+  let response = await axios.post(
+    `${BASE_URL}/vehicles/${issue.vehicleId}/issues`,
+    {
+      vehicle_id: issue.vehicleId,
+      description: issue.description,
+      priority: issue.priority,
+      due_date: issue.dueDate
+    },
+    {
       headers: {
-        Authorization: 'Zb84MzAROCrhmF6t'
+        Authorization: process.env.REACT_APP_API_TOKEN
       }
-    });
-    return response.data;
-  }
-);
+    }
+  );
+  console.log(response.data, ' ------ data here --------');
+});
 
 const initialState = { data: {}, isFetching: false, error: null };
 
