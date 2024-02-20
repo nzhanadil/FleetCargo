@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import FirebaseRegisterTab from './tabs/FirebaseRegisterTab';
+import FirebaseResetPassword from './tabs/FirebaseResetPasswordTab';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Register() {
+function ResetPassword() {
   const classes = useStyles();
 
   return (
@@ -45,22 +45,28 @@ function Register() {
           {/* <CardContent className="flex flex-col items-center justify-center w-full py-96 max-w-320"> */}
           <CardContent className="flex flex-col items-center justify-center w-full max-w-320">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
-              <div className="flex items-center justif-center mb-32">
+              <div className="flex items-center justif-center mb-10">
                 <img className="logo-icon w-70" src="assets/images/logos/cargoFleetLogo.png" alt="logo" />
                 </div>
             </motion.div>
 
-            <FirebaseRegisterTab />
+            <FirebaseResetPassword />
           </CardContent>
 
           <div className="flex flex-col items-center justify-center pb-32">
-            <div>
+            <div className='mb-4'>
               <span className="font-normal mr-8">Already have an account?</span>
               <Link className="font-normal" to="/login">
                 Login
               </Link>
             </div>
-            <Link className="font-normal mt-8" to="/">
+            <div className='mb-4'> {/* Reduce margin bottom */}
+              <span className="font-normal mr-2">Don't have an account?</span> {/* Adjust margin right */}
+              <Link className="font-normal" to="/register">
+                Register
+              </Link>
+            </div>
+            <Link className="font-normal" to="/">
               Back to Dashboard
             </Link>
           </div>
@@ -87,4 +93,5 @@ function Register() {
   );
 }
 
-export default Register;
+export default ResetPassword;
+

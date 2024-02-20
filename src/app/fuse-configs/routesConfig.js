@@ -7,6 +7,7 @@ import LoginConfig from 'app/main/login/LoginConfig';
 import LogoutConfig from 'app/main/logout/LogoutConfig';
 import pagesConfigs from 'app/main/pages/pagesConfigs';
 import RegisterConfig from 'app/main/register/RegisterConfig';
+import ResetPasswordConfig from 'app/main/reset-password/ResetPasswordConfig';
 import UserInterfaceConfig from 'app/main/user-interface/UserInterfaceConfig';
 import { Redirect } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ const routeConfigs = [
   DocumentationConfig,
   LogoutConfig,
   LoginConfig,
+  ResetPasswordConfig,
   RegisterConfig,
   LogoutConfig,
   CallbackConfig

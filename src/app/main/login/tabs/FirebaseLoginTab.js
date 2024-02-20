@@ -8,7 +8,7 @@ import { Controller, useForm } from 'react-hook-form';
 
 import _ from '@lodash';
 import TextField from '@material-ui/core/TextField';
-import { submitLoginWithFireBase } from 'app/auth/store/loginSlice';
+import { loginError, submitLoginWithFireBase } from 'app/auth/store/loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 
@@ -122,7 +122,7 @@ function FirebaseLoginTab(props) {
           disabled={_.isEmpty(dirtyFields) || !isValid}
           value="firebase"
         >
-          Log in with Firebase
+          Log in
         </Button>
       </form>
     </div>
