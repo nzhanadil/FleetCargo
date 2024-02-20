@@ -4,7 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import { parseISO, format } from 'date-fns';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
+import Divider from '@material-ui/core/Divider';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from '@material-ui/core';
 
@@ -19,6 +20,7 @@ function VehiclesList(props) {
   const vehicles = useSelector(selectVehicles);
   const searchText = useSelector(({ vehiclesApp }) => vehiclesApp.vehicles.searchText);
   const [filteredData, setFilteredData] = useState(null);
+
   const columns = useMemo(
     () => [
       {
@@ -30,11 +32,31 @@ function VehiclesList(props) {
         }
       },
       {
-        Header: 'Model',
-        accessor: 'model',
+        Header: 'Vehicle Brand',
+        accessor: ({ model }) => {
+          const [brand] = model.split(' ');
+          return brand;
+        },
         className: 'font-medium',
         sortable: true
       },
+      {
+        Header: 'Vehicle Model',
+        accessor: ({ model }) => {
+          const parts = model.split(' ');
+          const modelStr = parts.slice(1).join(' '); // Extract everything except the first part (brand)
+          return modelStr;
+        },
+        className: 'font-medium',
+        sortable: true
+      },
+      // {
+      //   Header: 'Model',
+      //   accessor: ' model',
+      //   className: 'font-medium',
+      //   sortable: true
+      // },
+
       {
         Header: 'Plate Number',
         accessor: 'plate_number',
@@ -48,18 +70,18 @@ function VehiclesList(props) {
       {
         Header: 'Engine number',
         accessor: 'engine_number',
-        sortable: true
+        sortable: false
       },
       {
         Header: 'Year',
         accessor: 'manufacture_year',
-        sortable: true,
+        sortable: false,
         Cell: ({ row }) => <p>{format(parseISO(row.values.manufacture_year), 'yyyy')}</p>
       },
       {
         Header: 'Issues',
         accessor: 'vehicleStatus',
-        sortable: true,
+        sortable: false,
         Cell: ({ row }) => <p>{row.original.issues.length}</p>
       },
       {
@@ -70,6 +92,7 @@ function VehiclesList(props) {
         Cell: ({ row }) => (
           <div className="flex items-center">
             <IconButton
+              style={{ fontSize: '12px', color: 'black' }}
               onClick={ev => {
                 ev.stopPropagation();
                 // handle Edit logic in this function
@@ -79,6 +102,7 @@ function VehiclesList(props) {
             </IconButton>
             <Divider orientation="vertical" flexItem />
             <IconButton
+              style={{ fontSize: '12px', color: 'black' }}
               onClick={ev => {
                 ev.stopPropagation();
                 // handle delete logic in this function
