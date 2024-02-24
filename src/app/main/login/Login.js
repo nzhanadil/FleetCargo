@@ -24,23 +24,40 @@ function Login() {
     setSelectedTab(value);
   }
   return (
-    <div className={clsx(classes.root, 'flex flex-col flex-auto items-center justify-center flex-shrink-0 p-16 md:p-24')}>
+    <div
+      className={clsx(classes.root, 'flex flex-col flex-auto items-center justify-center flex-shrink-0 p-16 md:p-24')}
+    >
       <motion.div
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
         className="flex w-full max-w-400 md:max-w-3xl rounded-20 shadow-2xl overflow-hidden"
       >
-        <Card className={clsx(classes.leftSection, 'flex flex-col w-full max-w-sm items-center justify-center shadow-0')} square>
+        <Card
+          className={clsx(classes.leftSection, 'flex flex-col w-full max-w-sm items-center justify-center shadow-0')}
+          square
+        >
           <CardContent className="flex flex-col items-center justify-center w-full max-w-320">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
-              <div className="flex items-center mb-4"> {/* Reduce margin bottom for better alignment */}
-                <img className="logo-icon w-64" src="https://cargofleet.org/assets/img/logo.png" alt="logo" style={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}/> {/* Adjust logo size */}
+              <div className="flex items-center mb-4">
+                {' '}
+                {/* Reduce margin bottom for better alignment */}
+                <img
+                  className="logo-icon w-64"
+                  src="https://cargofleet.org/assets/img/logo.png"
+                  alt="logo"
+                  style={{ filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))' }}
+                />{' '}
+                {/* Adjust logo size */}
                 <div className="border-l-1 mr-4 w-1 h-24" /> {/* Adjust border height for better appearance */}
                 <div>
-                  <Typography className="text-20 font-semibold logo-text" color="inherit"> {/* Adjust text size */}
+                  <Typography className="text-20 font-semibold logo-text" color="inherit">
+                    {' '}
+                    {/* Adjust text size */}
                     Fleet
                   </Typography>
-                  <Typography className="text-16 tracking-widest -mt-8 font-500" color="textSecondary"> {/* Adjust text size */}
+                  <Typography className="text-16 tracking-widest -mt-8 font-500" color="textSecondary">
+                    {' '}
+                    {/* Adjust text size */}
                     Cargo
                   </Typography>
                 </div>
@@ -56,14 +73,20 @@ function Login() {
             </Tabs>
             {selectedTab === 0 && <FirebaseLoginTab />}
           </CardContent>
-          <div className="flex flex-col items-center justify-center pt-4 pb-8"> {/* Adjust padding top and bottom */}
-            <div className='mb-4'> {/* Reduce margin bottom */}
+          <div className="flex flex-col items-center justify-center pt-4 pb-8">
+            {' '}
+            {/* Adjust padding top and bottom */}
+            <div className="mb-4">
+              {' '}
+              {/* Reduce margin bottom */}
               <span className="font-normal mr-2">Don't have an account?</span> {/* Adjust margin right */}
               <Link className="font-normal" to="/register">
                 Register
               </Link>
             </div>
-            <Link className="font-normal" to="/"> {/* Remove margin top */}
+            <Link className="font-normal" to="/">
+              {' '}
+              {/* Remove margin top */}
               Back to Dashboard
             </Link>
           </div>
@@ -88,4 +111,3 @@ function Login() {
   );
 }
 export default Login;
-
