@@ -23,6 +23,7 @@ export default function MaintenanceModal({ isOpen, setIsOpen }) {
   const onSubmitHandler = () => {
     dispatch(postIssue({ vehicleId, dueDate, description, priority }));
     dispatch(getVehicleDetails(vehicleId));
+    setIsOpen(false);
   };
   const body = (
     <Card className="absolute w-2/4 lg:w-2/6 p-12 inset-x-1/3 inset-y-1/4 h-1/2">

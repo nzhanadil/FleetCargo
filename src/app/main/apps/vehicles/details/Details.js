@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 function Details() {
   const { vehicleId } = useParams();
+
   let dispatch = useDispatch();
   const vehicle = useSelector(state => state.vehiclesApp.vehiclesDetail);
   const classes = useStyles();
@@ -43,10 +44,15 @@ function Details() {
 
   const onModalOpenClick = () => setOpen(true);
 
-  if (vehicle.isFetching)
+  if (vehicle.isFetching) {
     return (
       <div className="w-96 h-96 text-center absolute align-text-center rounded-full bg-gray-300 bottom-1/2 left-1/2 animate-ping opacity-75"></div>
     );
+  }
+
+  if (vehicle.error) {
+    return <>Seems like you don't have a data</>;
+  }
 
   return (
     <motion.div
@@ -89,7 +95,7 @@ function Details() {
         )}
         <div className="h-2/5 bg-gray-100 flex flex-col p-10 gap-12 rounded-12">
           <h1>Maintenance</h1>
-          <MaintenanceTable tableDatas={vehicle.data.issues} />
+          {vehicle.data?.issues && <MaintenanceTable tableDatas={vehicle.data.issues} />}
         </div>
         <button
           className="w-1/5 h-32 mt-1 rounded-12 bg-teal-500 hover:bg-teal-300 text-white bold tracking-wider"
