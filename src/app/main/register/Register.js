@@ -2,16 +2,11 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import { darken } from '@material-ui/core/styles/colorManipulator';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Auth0RegisterTab from './tabs/Auth0RegisterTab';
 import FirebaseRegisterTab from './tabs/FirebaseRegisterTab';
-import JWTRegisterTab from './tabs/JWTRegisterTab';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,11 +28,6 @@ const useStyles = makeStyles(theme => ({
 
 function Register() {
   const classes = useStyles();
-  const [selectedTab, setSelectedTab] = useState(0);
-
-  function handleTabChange(event, value) {
-    setSelectedTab(value);
-  }
 
   return (
     <div
@@ -60,27 +50,7 @@ function Register() {
               </div>
             </motion.div>
 
-            <Tabs value={selectedTab} onChange={handleTabChange} variant="fullWidth" className="w-full mb-32">
-              <Tab
-                icon={<img className="h-40 p-4 bg-black rounded-12" src="assets/images/logos/jwt.svg" alt="firebase" />}
-                className="min-w-0"
-                label="JWT"
-              />
-              <Tab
-                // icon={<img className="h-40" src="assets/images/logos/firebase.svg" alt="firebase" />}
-                className="min-w-0"
-                label="Firebase"
-              />
-              <Tab
-                icon={<img className="h-40" src="assets/images/logos/auth0.svg" alt="auth0" />}
-                className="min-w-0"
-                label="Auth0"
-              />
-            </Tabs>
-
-            {selectedTab === 0 && <JWTRegisterTab />}
-            {selectedTab === 1 && <FirebaseRegisterTab />}
-            {selectedTab === 2 && <Auth0RegisterTab />}
+            <FirebaseRegisterTab />
           </CardContent>
 
           <div className="flex flex-col items-center justify-center pb-32">
@@ -101,13 +71,13 @@ function Register() {
             <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}>
               <Typography variant="h3" color="inherit" className="font-semibold leading-tight">
                 Welcome <br />
-                to the <br /> FUSE React!
+                to the <br /> Fleet Cargo!
               </Typography>
             </motion.div>
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.3 } }}>
               <Typography variant="subtitle1" color="inherit" className="mt-32">
-                Powerful and professional admin template for Web Applications, CRM, CMS, Admin Panels and more.
+                Powerful and professional application for managing Logistics.
               </Typography>
             </motion.div>
           </div>
