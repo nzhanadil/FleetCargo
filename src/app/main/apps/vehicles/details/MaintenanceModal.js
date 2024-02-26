@@ -22,7 +22,6 @@ export default function MaintenanceModal({ isOpen, setIsOpen }) {
   const onPriorityChange = e => setPriority(e.target.value);
   const onSubmitHandler = () => {
     dispatch(postIssue({ vehicleId, dueDate, description, priority }));
-    dispatch(getVehicleDetails(vehicleId));
     setIsOpen(false);
   };
   const body = (
