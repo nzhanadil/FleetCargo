@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-const BASE_URL = `https://cargofleet-api.fly.dev/team2/api`;
+export const BASE_URL = `https://cargofleet-api.fly.dev/team2/api`;
 export const getVehicleDetails = createAsyncThunk('detail/getVehicleDetails', async vehicleId => {
   let response = await axios.get(`${BASE_URL}/vehicles/${vehicleId}`, {
     headers: {

@@ -50,7 +50,7 @@ export default function MaintenanceTable({ tableDatas }) {
                 <StyledTableCell align="left">{row.priority}</StyledTableCell>
                 <StyledTableCell align="left">{format(parseISO(row.due_date), 'MMM dd, yyyy')}</StyledTableCell>
                 <StyledTableCell align="center" padding="checkbox">
-                  <Checkbox checked={true} inputProps={{ 'aria-label': 'select all desserts' }} />
+                  <Checkbox checked={row.completed} />
                 </StyledTableCell>
               </TableRow>
             ))}

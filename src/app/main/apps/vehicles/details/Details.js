@@ -49,11 +49,7 @@ function Details() {
       <div className="w-96 h-96 text-center absolute align-text-center rounded-full bg-gray-300 bottom-1/2 left-1/2 animate-ping opacity-75"></div>
     );
   }
-
-  if (vehicle.error) {
-    return <>Seems like you don't have a data</>;
-  }
-
+  if (vehicle.error) return <>{vehicle.error}</>;
   return (
     <motion.div
       className="flex flex-col gap-10"
