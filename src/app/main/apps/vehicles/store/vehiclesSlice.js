@@ -29,9 +29,8 @@ export const addVehicle = createAsyncThunk(
         'Content-Type': 'application/json'
       }
     });
-    const data = await response.data.data;
 
-    dispatch(getVehicles());
+    const data = await response.data;
 
     return data;
   }
@@ -123,7 +122,10 @@ export const setVehiclesUnstarred = createAsyncThunk(
   }
 );
 
-const vehiclesAdapter = createEntityAdapter({});
+const vehiclesAdapter = createEntityAdapter({
+  selectId: entity => entity.id, 
+  sortComparer: (a, b) => b.id - a.id
+})
 
 export const { selectAll: selectVehicles, selectById: selectVehiclesById } = vehiclesAdapter.getSelectors(
   state => state.vehiclesApp.vehicles
@@ -188,7 +190,7 @@ const vehiclesSlice = createSlice({
   },
   extraReducers: {
     [updateVehicle.fulfilled]: vehiclesAdapter.upsertOne,
-    // [addVehicle.fulfilled]: vehiclesAdapter.addOne,
+    [addVehicle.fulfilled]: (state, action) => vehiclesAdapter.addOne(state, action.payload),
     [removeVehicles.fulfilled]: (state, action) => vehiclesAdapter.removeMany(state, action.payload),
     [removeVehicle.fulfilled]: (state, action) => vehiclesAdapter.removeOne(state, action.payload),
     [getVehicles.fulfilled]: (state, action) => {
