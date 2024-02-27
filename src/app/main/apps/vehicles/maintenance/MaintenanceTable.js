@@ -59,7 +59,7 @@ export default function MaintenanceTable({ tableDatas }) {
         setMessage('successfully copleted maintenance');
         window.location.reload();
       } else {
-        setMessage('Has been successfully copleted');
+        setMessage('Has been successfully complete');
       }
     } catch (error) {
       setMessage('Failed to complete');
