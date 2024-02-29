@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getUserData } from './userSlice';
 
 export const getVehicles = createAsyncThunk('vehicle-list-app/vehicles/getVehicles', async (_, { getState }) => {
-  const response = await axios.get('https://cargofleet-api.fly.dev/team1/api/vehicles', {
+  const response = await axios.get('https://cargofleet-api.fly.dev/team2/api/vehicles', {
     headers: {
       Authorization: 'Zb84MzAROCrhmF6t'
     }
@@ -132,8 +132,8 @@ const vehiclesSlice = createSlice({
     setVehiclesSearchText: {
       reducer: (state, action) => {
         state.searchText = action.payload;
-      },
-      prepare: event => ({ payload: event.target.value || '' })
+      }
+      // prepare: event => ({ payload: event.target.value || '' })
     },
     openNewVehicleDialog: (state, action) => {
       state.vehicleDialog = {

@@ -44,7 +44,7 @@ function VehiclesList(props) {
         Header: 'Vehicle Model',
         accessor: ({ model }) => {
           const parts = model.split(' ');
-          const modelStr = parts.slice(1).join(' '); // Extract everything except the first part (brand)
+          const modelStr = parts.slice(1).join(' ');
           return modelStr;
         },
         className: 'font-medium',
@@ -117,13 +117,16 @@ function VehiclesList(props) {
     // eslint-disable-next-line
     [dispatch, vehicles]
   );
-
+  console.log(vehicles);
   useEffect(() => {
     function getFilteredArray(entities, _searchText) {
       if (_searchText.length === 0) {
-        return vehicles;
+        return entities;
       }
-      return FuseUtils.filterArrayByString(vehicles, _searchText);
+      // return FuseUtils.filterArrayByString(vehicles, _searchText);
+      return entities.filter(vehicle => {
+        return vehicle.model.toLowerCase().includes(_searchText.toLowerCase());
+      });
     }
 
     if (vehicles) {
@@ -149,7 +152,7 @@ function VehiclesList(props) {
     <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
       <VehiclesTable
         columns={columns}
-        data={vehicles}
+        data={filteredData}
         // onRowClick={(ev, row) => {
         //   if (row) {
         //     dispatch(openEditContactDialog(row.original));
