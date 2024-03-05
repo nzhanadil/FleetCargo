@@ -194,10 +194,10 @@ const vehiclesSlice = createSlice({
     [removeVehicles.fulfilled]: (state, action) => vehiclesAdapter.removeMany(state, action.payload),
     [removeVehicle.fulfilled]: (state, action) => vehiclesAdapter.removeOne(state, action.payload),
     [getVehicles.fulfilled]: (state, action) => {
-      const { data, routeParams } = action.payload;
+      const data = action.payload;
       vehiclesAdapter.setAll(state, data);
-      state.routeParams = routeParams;
-      state.searchText = '';
+      // state.routeParams = routeParams;
+      // state.searchText = '';
     }
   }
 });
