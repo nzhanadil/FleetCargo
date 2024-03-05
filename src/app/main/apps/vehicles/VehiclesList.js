@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import { parseISO, format } from 'date-fns';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-// import Divider from '@mui/material/Divider';
 import Divider from '@material-ui/core/Divider';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from '@material-ui/core';
@@ -14,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import VehiclesTable from './VehiclesTable';
 import { selectVehicles } from './store/vehiclesSlice';
+import { openEditVehicleDialog } from './store/vehiclesSlice';
 
 function VehiclesList(props) {
   const dispatch = useDispatch();
@@ -134,30 +134,30 @@ function VehiclesList(props) {
     }
   }, [vehicles, searchText]);
 
-  if (!filteredData) {
-    return null;
-  }
+  // if (!filteredData) {
+  //   return null;
+  // }
 
-  if (filteredData.length === 0) {
-    return (
-      <div className="flex flex-1 items-center justify-center h-full">
-        <Typography color="textSecondary" variant="h5">
-          There are no vehicles!
-        </Typography>
-      </div>
-    );
-  }
+  // if (filteredData.length === 0) {
+  //   return (
+  //     <div className="flex flex-1 items-center justify-center h-full">
+  //       <Typography color="textSecondary" variant="h5">
+  //         There are no vehicles!
+  //       </Typography>
+  //     </div>
+  //   );
+  // }
 
   return (
     <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}>
       <VehiclesTable
         columns={columns}
-        data={filteredData}
-        // onRowClick={(ev, row) => {
-        //   if (row) {
-        //     dispatch(openEditContactDialog(row.original));
-        //   }
-        // }}
+        data={vehicles}
+        onRowClick={(ev, row) => {
+          if (row) {
+            dispatch(openEditVehicleDialog(row.original));
+          }
+        }}
       />
     </motion.div>
   );
