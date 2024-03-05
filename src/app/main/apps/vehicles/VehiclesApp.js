@@ -11,7 +11,6 @@ import VehiclesList from './VehiclesList';
 import reducer from './store';
 import { getVehicles } from './store/vehiclesSlice';
 import Details from './details/Details';
-import VehicleModal from './VehicleModal';
 // import { getUserData } from './store/userSlice';
 
 function VehiclesApp(props) {
