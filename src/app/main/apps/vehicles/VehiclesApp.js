@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useDeepCompareEffect } from '@fuse/hooks';
-// import VehicleDialog from './VehicleDialog';
+import VehicleDialog from './VehicleDialog';
 import VehiclesHeader from './VehiclesHeader';
 import VehiclesList from './VehiclesList';
 // import VehiclesSidebarContent from './VehiclesSidebarContent';
@@ -20,16 +20,9 @@ function VehiclesApp(props) {
   const pageLayout = useRef(null);
   const routeParams = useParams();
 
-  const [modal, setModal] = useState(false);
-  const [modalAction, setModalAction] = useState(false);
-  const toggleModal = (action) => {
-    setModalAction(action)
-    setModal(!modal)
-  }
-
   useDeepCompareEffect(() => {
     dispatch(getVehicles(routeParams));
-    // dispatch(getUserData());
+    dispatch(getUserData());
   }, [dispatch, routeParams]);
 
   return (
@@ -49,8 +42,7 @@ function VehiclesApp(props) {
         ref={pageLayout}
         innerScroll
       />
-      {/* <VehicleDialog /> */}
-      <VehicleModal modal={modal} toggleModal={toggleModal} modalAction={modalAction}/>
+      <VehicleDialog />
     </>
   );
 }
