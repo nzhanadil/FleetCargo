@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMainTheme } from 'app/store/fuse/settingsSlice';
-import { setVehiclesSearchText } from './store/vehiclesSlice';
+import { openNewVehicleDialog, setVehiclesSearchText } from './store/vehiclesSlice';
+import { Button } from '@material-ui/core';
 
 function VehiclesHeader(props) {
   const dispatch = useDispatch();
@@ -78,6 +79,7 @@ function VehiclesHeader(props) {
           </Paper>
         </ThemeProvider>
       </div>
+      <Button variant='outlined' className='px-16 py-8' onClick={ev => dispatch(openNewVehicleDialog())}>Add New</Button>
     </div>
   );
 }
