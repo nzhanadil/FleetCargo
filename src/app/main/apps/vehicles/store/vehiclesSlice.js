@@ -148,8 +148,8 @@ const vehiclesSlice = createSlice({
     setVehiclesSearchText: {
       reducer: (state, action) => {
         state.searchText = action.payload;
-      },
-      prepare: event => ({ payload: event.target.value || '' })
+      }
+      // prepare: event => ({ payload: event.target.value || '' })
     },
     openNewVehicleDialog: (state, action) => {
       state.vehicleDialog = {

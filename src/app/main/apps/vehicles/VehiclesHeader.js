@@ -16,6 +16,10 @@ function VehiclesHeader(props) {
   const searchText = useSelector(({ vehiclesApp }) => vehiclesApp.vehicles.searchText);
   const mainTheme = useSelector(selectMainTheme);
 
+  const handleInputChange = event => {
+    dispatch(setVehiclesSearchText(event.target.value));
+  };
+
   return (
     <div className="flex flex-1 items-center justify-between p-4 sm:p-24">
       <div className="flex flex-shrink items-center sm:w-224">
@@ -70,7 +74,7 @@ function VehiclesHeader(props) {
               inputProps={{
                 'aria-label': 'Search'
               }}
-              onChange={ev => dispatch(setVehiclesSearchText(ev))}
+              onChange={handleInputChange}
             />
           </Paper>
         </ThemeProvider>
