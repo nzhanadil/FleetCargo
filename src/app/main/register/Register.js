@@ -47,7 +47,7 @@ function Register() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 0.2 } }}>
               <div className="flex items-center justif-center mb-32">
                 <img className="logo-icon w-70" src="assets/images/logos/cargoFleetLogo.png" alt="logo" />
-                </div>
+              </div>
             </motion.div>
 
             <FirebaseRegisterTab />
